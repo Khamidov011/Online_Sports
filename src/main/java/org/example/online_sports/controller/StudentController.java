@@ -17,26 +17,31 @@ import java.util.List;
 public class StudentController {
     private final StudentsService studentsService;
 
+    // O'quvchi saqlash✅
     @PostMapping("/save")
     public ApiResponse saveStudent(@RequestBody ReqStudent reqStudent) {
         return studentsService.saveStudent(reqStudent);
     }
 
+    // O'quvchini o'chirish✅
     @DeleteMapping("/{id}")
     public ApiResponse deleteStudent(@PathVariable Long id) {
         return studentsService.deleteStudent(id);
     }
 
+    // hamma o'quvchilarni olish✅
     @GetMapping("/list")
     public List<ResStudent> getAllStudents() {
         return studentsService.getAllStudents();
     }
 
+    // Bitta o'quvchini olish✅
     @GetMapping("/{id}")
     public ResStudent getOneStudent(@PathVariable Long id) {
         return studentsService.getOneStudent(id);
     }
 
+    // O'quvchilarni yangilash✅
     @PutMapping("/{id}")
     public ApiResponse updateStudents(@PathVariable Long id, @RequestBody ReqStudent reqStudent) {
         return studentsService.updateStudent(id, reqStudent);
