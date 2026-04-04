@@ -1,6 +1,5 @@
 package org.example.online_sports.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -51,8 +50,11 @@ public class Users extends AbsEntity implements UserDetails {
     private File file;
 
     private boolean accountNonExpired = true;
+
     private boolean accountNonLocked = true;
+
     private boolean credentialsNonExpired = true;
+
     private boolean enabled;
 
     @Override
@@ -83,5 +85,4 @@ public class Users extends AbsEntity implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
 }

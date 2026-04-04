@@ -23,9 +23,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthService {
     private final PasswordEncoder passwordEncoder;
+
     private final UserRepository userRepository;
+
     private final RoleRepository roleRepository;
+
     private final MailSender javaMailSender;
+
     private final JWTProvider jWTProvider;
 
     public ApiResponse register(AuthRegister authRegister) {

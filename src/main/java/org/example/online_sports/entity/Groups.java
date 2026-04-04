@@ -14,6 +14,7 @@ import org.example.online_sports.entity.template.AbsEntity;
 @Entity
 @Builder
 public class Groups extends AbsEntity {
+
     private String name;
 
     private int capacity;
