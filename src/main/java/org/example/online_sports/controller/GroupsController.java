@@ -16,26 +16,31 @@ import java.util.List;
 public class GroupsController {
     private final GroupsService groupsService;
 
+    // Guruhlarni saqlash qismi✅
     @PostMapping("/save")
     public ApiResponse saveGroup(@RequestBody ReqGroup reqGroup) {
         return groupsService.saveGroup(reqGroup);
     }
 
+    // Guruhni o'chirish✅
     @DeleteMapping("/{id}")
     public ApiResponse deleteGroup(@PathVariable Long id) {
         return groupsService.deleteGroup(id);
     }
 
+    // hamma guruhlarni olish✅
     @GetMapping("/list")
     public List<ResGroup> getAllGroups() {
         return groupsService.getAllGroups();
     }
 
+    // Bitta guruhni olish✅
     @GetMapping("/{id}")
     public ResGroup getOneGroups(@PathVariable Long id) {
         return groupsService.getOneGroup(id);
     }
 
+    // Guruhlarni yangilash✅
     @PutMapping("/{id}")
     public ApiResponse updateGroups(@PathVariable Long id, @RequestBody ReqGroup reqGroup) {
         return groupsService.updateGroup(id, reqGroup);

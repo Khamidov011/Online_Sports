@@ -17,6 +17,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class GroupsService {
+    // Bu to'liq CRUD qism✅
     private final GroupsRepository groupsRepository;
 
     public ApiResponse saveGroup(ReqGroup reqGroup) {

@@ -33,6 +33,7 @@ public class AuthService {
     private final JWTProvider jWTProvider;
 
     public ApiResponse register(AuthRegister authRegister) {
+        // Bu to'liq CRUD qism✅
         boolean exists = userRepository.existsByEmail(authRegister.getEmail());
         if (exists) {
             return new ApiResponse("This email already used", false, HttpStatus.BAD_REQUEST, null);

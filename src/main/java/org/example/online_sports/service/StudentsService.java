@@ -18,6 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StudentsService {
+    // Bu to'liq CRUD qism✅
     private final StudentsRepository studentsRepository;
     private final GroupsRepository groupsRepository;
 
