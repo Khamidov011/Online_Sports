@@ -8,6 +8,9 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class Token {
+
     private String token;
+
     private String role;
+
 }

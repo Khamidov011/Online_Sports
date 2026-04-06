@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class ResStudent {
+
     private Long id;
 
     private String fullName;
@@ -19,4 +20,5 @@ public class ResStudent {
     private String address;
 
     private String status;
+
 }

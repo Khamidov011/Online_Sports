@@ -16,7 +16,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+
 public class GroupsService {
+
     // Bu to'liq CRUD qism✅
     private final GroupsRepository groupsRepository;
 
@@ -28,20 +30,24 @@ public class GroupsService {
                     .status(HttpStatus.CONFLICT)
                     .build();
         }
+
         Groups group = Groups.builder()
                 .name(reqGroup.getName())
                 .level(reqGroup.getLevel())
                 .capacity(reqGroup.getCapacity())
                 .build();
         groupsRepository.save(group);
+
         return ApiResponse.builder()
                 .message("Group saved")
                 .success(true)
                 .status(HttpStatus.CREATED)
                 .build();
+
     }
 
     public ApiResponse updateGroup(Long id, ReqGroup reqGroup) {
+
         boolean exists = groupsRepository.existsByNameAndIdNot(reqGroup.getName(), id);
         if (!exists) {
             Optional<Groups> byId = groupsRepository.findById(id);
@@ -56,6 +62,7 @@ public class GroupsService {
                         .success(true)
                         .status(HttpStatus.OK)
                         .build();
+
             }
             return ApiResponse.builder()
                     .message("Group not found")
@@ -63,6 +70,7 @@ public class GroupsService {
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
+
         return ApiResponse.builder()
                 .message("Group already exists")
                 .success(false)
@@ -71,6 +79,7 @@ public class GroupsService {
     }
 
     public ApiResponse deleteGroup(Long id) {
+
         if (!groupsRepository.existsById(id)) {
             return ApiResponse.builder()
                     .message("Group not found")
@@ -78,6 +87,7 @@ public class GroupsService {
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
+
         groupsRepository.deleteById(id);
         return ApiResponse.builder()
                 .message("Group deleted")
@@ -87,6 +97,7 @@ public class GroupsService {
     }
 
     public List<ResGroup> getAllGroups() {
+
         List<Groups> groups = groupsRepository.findAll();
         List<ResGroup> resGroups = new ArrayList<>();
         for (Groups group : groups) {
@@ -102,6 +113,7 @@ public class GroupsService {
     }
 
     public ResGroup getOneGroup(Long id) {
+
         Optional<Groups> byId = groupsRepository.findById(id);
         if (byId.isPresent()) {
             Groups groups = byId.get();
@@ -112,7 +124,9 @@ public class GroupsService {
                     .build();
             return resGroup;
         }
+
         return null;
+
     }
 
 }
