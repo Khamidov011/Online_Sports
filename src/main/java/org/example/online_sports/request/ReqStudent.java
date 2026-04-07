@@ -9,7 +9,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class ReqStudent {
+
     private Long id;
 
     private String fullName;
@@ -21,4 +23,5 @@ public class ReqStudent {
     private String address;
 
     private String status;
+
 }

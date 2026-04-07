@@ -4,6 +4,7 @@ import org.example.online_sports.entity.Students;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentsRepository extends JpaRepository<Students, Long> {
+
     // Ismni tekshiradi mavjudligini✅
     boolean existsByFullNameIgnoreCase(String name);
 

@@ -16,16 +16,20 @@ public class JWTProvider {
     private long ttl;
 
     public String generateToken(String email) {
+
         long now = System.currentTimeMillis();
+
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(now + ttl))
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
+
     }
 
     public String getEmailFromToken(String token) {
+
         try {
             return Jwts.parser()
                     .setSigningKey(secretKey)
@@ -40,9 +44,11 @@ public class JWTProvider {
         } catch (Exception e) {
             throw new JwtException("Jwt token exception: " + e.getMessage());
         }
+
     }
 
     public boolean isValid(String token) {
+
         try {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
@@ -53,5 +59,6 @@ public class JWTProvider {
         } catch (Exception e) {
             throw new JwtException("Jwt token exception: " + e.getMessage());
         }
+
     }
 }

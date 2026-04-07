@@ -18,11 +18,14 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StudentsService {
+
     // Bu to'liq CRUD qism✅
+
     private final StudentsRepository studentsRepository;
     private final GroupsRepository groupsRepository;
 
     public ApiResponse saveStudent(ReqStudent reqStudent) {
+
         boolean exists = studentsRepository.existsByFullNameIgnoreCase(reqStudent.getFullName());
         if (exists) {
             return ApiResponse.builder()
@@ -31,6 +34,7 @@ public class StudentsService {
                     .status(HttpStatus.CONFLICT)
                     .build();
         }
+
         Optional<Groups> byId = groupsRepository.findById(reqStudent.getId());
         if (byId.isEmpty()) {
             return ApiResponse.builder()
@@ -39,6 +43,7 @@ public class StudentsService {
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
+
         Students students = Students.builder()
                 .fullName(reqStudent.getFullName())
                 .age(reqStudent.getAge())
@@ -52,10 +57,12 @@ public class StudentsService {
                 .success(true)
                 .status(HttpStatus.CREATED)
                 .build();
+
     }
 
     public ApiResponse updateStudent(Long id, ReqStudent reqStudent) {
-        boolean exists = studentsRepository.existsByFullNameAndIdNot(reqStudent.getFullName(), reqStudent.getId());
+
+        boolean exists = studentsRepository.existsByFullNameAndIdNot(reqStudent.getFullName(),id);
         if (!exists) {
             Optional<Students> byId = studentsRepository.findById(reqStudent.getId());
             if (byId.isPresent()) {
@@ -72,12 +79,14 @@ public class StudentsService {
                         .status(HttpStatus.OK)
                         .build();
             }
+
             return ApiResponse.builder()
                     .message("Student does not exist")
                     .success(false)
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
+
         return ApiResponse.builder()
                 .message("Student already exists")
                 .success(false)
@@ -86,6 +95,7 @@ public class StudentsService {
     }
 
     public ApiResponse deleteStudent(Long id) {
+
         if (!studentsRepository.existsById(id)) {
             return ApiResponse.builder()
                     .message("Student does not exist")
@@ -93,6 +103,7 @@ public class StudentsService {
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
+
         studentsRepository.deleteById(id);
         return ApiResponse.builder()
                 .message("Student successfully deleted")
@@ -102,6 +113,7 @@ public class StudentsService {
     }
 
     public List<ResStudent> getAllStudents() {
+
         List<Students> students = studentsRepository.findAll();
         List<ResStudent> resStudents = new ArrayList<>();
         for (Students student : students) {
@@ -113,11 +125,14 @@ public class StudentsService {
                     .status(student.getStatus())
                     .build();
             resStudents.add(resStudent);
+
         }
+
         return resStudents;
     }
 
     public ResStudent getOneStudent(Long id) {
+
         Optional<Students> byId = studentsRepository.findById(id);
         if (byId.isPresent()) {
             Students students = byId.get();
@@ -129,7 +144,11 @@ public class StudentsService {
                     .status(students.getStatus())
                     .build();
             return resStudent;
+
         }
+
         return null;
+
     }
+
 }

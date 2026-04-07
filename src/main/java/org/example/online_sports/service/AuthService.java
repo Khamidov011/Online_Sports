@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+
 public class AuthService {
+
     private final PasswordEncoder passwordEncoder;
 
     private final UserRepository userRepository;
@@ -33,7 +35,9 @@ public class AuthService {
     private final JWTProvider jWTProvider;
 
     public ApiResponse register(AuthRegister authRegister) {
+
         // Bu to'liq CRUD qism✅
+
         boolean exists = userRepository.existsByEmail(authRegister.getEmail());
         if (exists) {
             return new ApiResponse("This email already used", false, HttpStatus.BAD_REQUEST, null);
@@ -63,9 +67,11 @@ public class AuthService {
     }
 
     public ApiResponse activateUser(Long code) {
+
         Users users = userRepository.findByCode(code).orElseThrow(
                 () -> new NotFoundException("User not found")
         );
+
         users.setEnabled(true);
         userRepository.save(users);
 
@@ -75,12 +81,15 @@ public class AuthService {
                 .role(users.getRole().getRole().name())
                 .build();
         return new ApiResponse("You have been verified. Now you can log in freely", true, HttpStatus.OK, tokenObj);
+
     }
 
     public ApiResponse login(AuthLogin authLogin) {
+
         Users users = userRepository.findByEmail(authLogin.getEmail()).orElseThrow(
                 () -> new NotFoundException("User not found")
         );
+
         if (users.isEnabled()) {
             if (passwordEncoder.matches(authLogin.getPassword(), users.getPassword())) {
 
@@ -98,4 +107,5 @@ public class AuthService {
         return new ApiResponse("You are not active yet", false, HttpStatus.BAD_REQUEST, null);
 
     }
+
 }

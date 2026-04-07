@@ -20,11 +20,13 @@ import java.util.Properties;
 
 @Configuration
 @RequiredArgsConstructor
+
 public class Configure {
     private final UserRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
+
         return username -> {
             Users users = userRepository.findByEmail(username).get();
             if (users == null) {
@@ -33,28 +35,39 @@ public class Configure {
                 return users;
             }
         };
+
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
+
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsService());
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
+
     }
 
     @Bean
+
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+
         return configuration.getAuthenticationManager();
+
     }
 
     @Bean
+
     public PasswordEncoder passwordEncoder() {
+
         return new BCryptPasswordEncoder();
+
     }
 
     @Bean
+
     public JavaMailSender getJavaMailSender(){
+
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setUsername("@y12342433t@gmail.com");
@@ -66,6 +79,7 @@ public class Configure {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.debug", "true");
         return mailSender;
+
     }
 
 }

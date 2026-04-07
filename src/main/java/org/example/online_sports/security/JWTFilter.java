@@ -28,16 +28,20 @@ public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTProvider jWTProvider;
     private final UserDetailsService userDetailsService;
+
     @Value("${security.whitelist}")
     private String[] whitelist;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+
         String path = request.getServletPath();
         if (isWhiteListed(path)) {
             filterChain.doFilter(request, response);
             return;
         }
+
         String authorization = request.getHeader("Authorization");
         if (authorization != null && authorization.startsWith("Bearer ")) {
             String token = authorization.substring(7);
@@ -59,17 +63,24 @@ public class JWTFilter extends OncePerRequestFilter {
                 return;
             }
         }
+
         doFilter(request, response, filterChain);
+
     }
 
     private boolean isWhiteListed(String path) {
+
         AntPathMatcher matcher = new AntPathMatcher();
         return Arrays.stream(whitelist).anyMatch(pattern -> matcher.match(path, pattern));
+
     }
 
     private void handleException(HttpServletResponse response, String message) throws IOException {
+
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType("application/json");
         response.getWriter().write(new ObjectMapper().writeValueAsString(message));
+
     }
+
 }
