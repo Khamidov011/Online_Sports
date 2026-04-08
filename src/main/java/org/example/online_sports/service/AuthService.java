@@ -51,8 +51,7 @@ public class AuthService {
         simpleMailMessage.setFrom("y12342433t@gamil.com");
         simpleMailMessage.setTo(authRegister.getEmail());
         simpleMailMessage.setSubject("Verify your email");
-        simpleMailMessage.setText("Your verification code: " + code);
-        simpleMailMessage.setText("Now you need to process this code into the system");
+        simpleMailMessage.setText("Your verification code: " + code + "\nNow you need to process this code into the system\"");
         javaMailSender.send(simpleMailMessage);
         return new ApiResponse("You have registered. Now verify the code", true, HttpStatus.OK, null);
 
@@ -87,11 +86,10 @@ public class AuthService {
                         .token(token)
                         .role(users.getRole().getRole().name())
                         .build();
-                return new ApiResponse("Login successful", true, HttpStatus.OK, token1);
+                return new ApiResponse("Login succsessful", true, HttpStatus.OK, token1);
             }
-            return new ApiResponse("The password you entered is incorrect", false, HttpStatus.BAD_REQUEST, null);
+            return new ApiResponse("Invalid password", false, HttpStatus.BAD_REQUEST, null);
         }
-        return new ApiResponse("You are not active yet", false, HttpStatus.BAD_REQUEST, null);
-
+        return new ApiResponse("Invalid email or password", false, HttpStatus.BAD_REQUEST,null);
     }
 }

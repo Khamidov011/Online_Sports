@@ -1,8 +1,6 @@
 package org.example.online_sports.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
 import org.example.online_sports.entity.template.AbsEntity;

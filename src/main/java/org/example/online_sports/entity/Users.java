@@ -47,7 +47,6 @@ public class Users extends AbsEntity implements UserDetails {
 
     @Column(nullable = false)
     private String experience_years;
-
     private File file;
 
     private boolean accountNonExpired = true;
@@ -59,6 +58,7 @@ public class Users extends AbsEntity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(role);
     }
+
     @Override
     public String getUsername() {
         return email;

@@ -13,7 +13,7 @@ import java.sql.Time;
 @NoArgsConstructor
 @Entity
 @Builder
-public class notifications extends AbsEntity {
+public class Notifications extends AbsEntity {
 
     private String title;
 
