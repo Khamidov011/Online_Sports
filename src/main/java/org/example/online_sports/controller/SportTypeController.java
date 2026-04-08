@@ -2,11 +2,8 @@ package org.example.online_sports.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.online_sports.payload.ApiResponse;
-import org.example.online_sports.request.ReqNotifications;
 import org.example.online_sports.request.ReqSportType;
-import org.example.online_sports.response.ResNotifications;
 import org.example.online_sports.response.ResSportType;
-import org.example.online_sports.service.NotificationsService;
 import org.example.online_sports.service.SportTypeService;
 import org.springframework.web.bind.annotation.*;
 

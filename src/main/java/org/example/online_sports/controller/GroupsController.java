@@ -28,7 +28,7 @@ public class GroupsController {
         return groupsService.deleteGroup(id);
     }
 
-    // hamma guruhlarni olish✅
+    // Hamma guruhlarni olish✅
     @GetMapping("/list")
     public List<ResGroup> getAllGroups() {
         return groupsService.getAllGroups();

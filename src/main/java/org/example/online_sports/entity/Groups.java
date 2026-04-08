@@ -3,6 +3,7 @@ package org.example.online_sports.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.example.online_sports.entity.template.AbsEntity;
 
 @Getter
@@ -10,7 +11,7 @@ import org.example.online_sports.entity.template.AbsEntity;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
+@SuperBuilder
 public class Groups extends AbsEntity {
 
     private String name;
@@ -21,5 +22,5 @@ public class Groups extends AbsEntity {
 
     @ManyToOne
     private Sports_type sportsType;
-
+    
 }

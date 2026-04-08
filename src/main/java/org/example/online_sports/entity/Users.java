@@ -4,11 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.example.online_sports.entity.template.AbsEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 public class Users extends AbsEntity implements UserDetails {
 
@@ -24,7 +24,7 @@ public class Users extends AbsEntity implements UserDetails {
     @Column(unique = true, nullable = false)
     private String fullName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String address;
 
     private Long code;
@@ -41,18 +41,21 @@ public class Users extends AbsEntity implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String direction;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String experience_years;
 
-    private File file;
+    private byte[] file;
 
+    @Builder.Default
     private boolean accountNonExpired = true;
 
+    @Builder.Default
     private boolean accountNonLocked = true;
 
+    @Builder.Default
     private boolean credentialsNonExpired = true;
 
     private boolean enabled;
@@ -85,4 +88,5 @@ public class Users extends AbsEntity implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+    
 }

@@ -2,6 +2,7 @@ package org.example.online_sports.entity;
 
 import jakarta.persistence.Entity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.example.online_sports.entity.template.AbsEntity;
 
 
@@ -9,7 +10,7 @@ import org.example.online_sports.entity.template.AbsEntity;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 public class Notifications extends AbsEntity {
 
