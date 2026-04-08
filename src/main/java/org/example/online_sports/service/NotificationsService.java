@@ -1,14 +1,11 @@
 package org.example.online_sports.service;
 
+
 import lombok.RequiredArgsConstructor;
-import org.example.online_sports.entity.Groups;
 import org.example.online_sports.entity.Notifications;
 import org.example.online_sports.payload.ApiResponse;
-import org.example.online_sports.repository.GroupsRepository;
 import org.example.online_sports.repository.NotificationsRepository;
-import org.example.online_sports.request.ReqGroup;
 import org.example.online_sports.request.ReqNotifications;
-import org.example.online_sports.response.ResGroup;
 import org.example.online_sports.response.ResNotifications;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
